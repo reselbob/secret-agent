@@ -1,0 +1,25 @@
+{
+  "name": "secretSocitey",
+  "version": "1.0.0",
+  "description": "A project for demonstrating the use of Jenkinsfile",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node index.js"
+  },
+  "author": "Bob Reselman <reselbob@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "faker": "^5.1.0",
+    "uuid": "^3.3.3"
+  }
+}
