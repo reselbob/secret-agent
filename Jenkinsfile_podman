@@ -3,8 +3,8 @@ node {
     // on linux / mac
     env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
     sh 'npm --version'
-    sh 'sudo apt-get update -y'
-    sh 'sudo source /etc/os-release'
+    sh 'apt-get update -y'
+    sh 'source /etc/os-release'
     sh 'echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list'
     sh 'wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/xUbuntu_${VERSION_ID}/Release.key -O- | apt-key add -'
     sh 'apt-get update -qq -y'
