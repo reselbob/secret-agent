@@ -14,7 +14,6 @@ pipeline {
                 git branch: 'main',
                     url: 'https://github.com/reselbob/secret-agent.git'
                 sh "npm install"
-                sh "sudo apt-get -y install podman -y"
             }
         }
         stage('test') {
