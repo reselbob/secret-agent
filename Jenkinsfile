@@ -28,7 +28,8 @@ pipeline {
                 sh "docker tag secretagent:v1 localhost:5000/secretagent:v1"
                 sh "docker push localhost:5000/secretagent:v1"
                 sh "docker run -d -p 3050:3050 --name secret_agent localhost:5000/secretagent:v1"
-                echo 'Secret Agent is now ready to run'
+                sh "curl localhost:3050"
+                echo 'Secret Agent up and running on port 3050'
             }
         }
     }
