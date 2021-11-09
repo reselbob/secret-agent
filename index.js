@@ -3,8 +3,8 @@ const http = require('http');
 const uuidv4 = require('uuid/v4');
 const faker = require('faker');
 
-const port = process.env.SECRET_SOCIETY_PORT || 3050;
-const agent = process.env.SECRET_SOCIETY_AGENT || 'Unknown';
+const port = process.env.SECRET_AGENT_PORT || 3050;
+const agent = process.env.SECRET_AGENT || 'Unknown';
 
 const getMessage = ()=> {
     const msg = {}
@@ -29,11 +29,11 @@ const handleRequest = (request, response)  => {
 const server = http.createServer(handleRequest);
 
 server.listen(port, () => {
-    console.log(`Secret Society Server is listening on port ${port} at ${new Date()}`);
+    console.log(`Secret Agent Server is listening on port ${port} at ${new Date()}`);
 });
 
 const shutdown = () => {
-    console.log(`Secret Society shutting down at ${new Date()}`);
+    console.log(`Secret Agent Server is shutting down at ${new Date()}`);
     server.close();
 };
 
