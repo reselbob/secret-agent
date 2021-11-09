@@ -9,9 +9,7 @@ node {
 
 pipeline {
     agent any
-
-    def app
-
+    
     stages {
         stage('build') {
             steps {
