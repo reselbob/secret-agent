@@ -26,7 +26,7 @@ pipeline {
         stage('release') {
              when {
                 expression {
-                return secretAgentAppExists == '';
+                    return $( docker ps -a | grep secret_agent) == '';
                 }
             }
             steps {
@@ -35,7 +35,6 @@ pipeline {
                 sh "docker tag secretagent:v1 localhost:5000/secretagent:v1"
                 sh "docker push localhost:5000/secretagent:v1"
                 sh "docker run -d --network='host' -p 3050:3050 --name secret_agent localhost:5000/secretagent:v1"
-                secretAgentAppExists = 'true'
                 echo 'Secret Agent up and running on port 3050'
             }               
         }
