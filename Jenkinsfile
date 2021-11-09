@@ -25,8 +25,7 @@ pipeline {
         }
         stage('release') {
             steps {
-            sh """ if ! docker ps --format '{{.Names}}' | grep -w secret_agent &> /dev/null;
-                then ;
+            sh """ if ! [docker ps --format '{{.Names}}' | grep -w secret_agent &> /dev/null]; then
                     docker run -d --network='host' -p 5000:5000 --restart=always --name registry registry:2 ;
                     docker build -t secretagent:v1 . ;
                     docker tag secretagent:v1 localhost:5000/secretagent:v1 ;
