@@ -24,7 +24,7 @@ pipeline {
         stage('release') {
             steps {
                 script {
-                    AGENT_APP_EXISTS=$(docker ps -a | grep secret_agent)
+                    sh "AGENT_APP_EXISTS=$(docker ps -a | grep secret_agent)"
                     if ( AGENT_APP_EXISTS == "" ) {
                         sh "docker run -d --network='host' -p 5000:5000 --restart=always --name registry registry:2"
                         sh "docker build -t secretagent:v1 . "
