@@ -19,20 +19,20 @@ pipeline {
             }
         }
         stage('test') {
+            steps {
             script {
                     env.SECRET_AGENT_PORT = "3060"
                     echo "SECRET_AGENT_PORT is '${SECRET_AGENT_PORT}'"
                 }
-            steps {
                 sh "npm test"
             }
         }
         stage('release') {
+            steps {
             script {
                 env.SECRET_AGENT_PORT = "3050"
                 echo "SECRET_AGENT_PORT is '${SECRET_AGENT_PORT}'"
             }
-            steps {
             sh """ if ! [docker ps --format '{{.Names}}' | grep -w secret_agent &> /dev/null]; then
                     docker run -d --network='host' -p 5000:5000 --restart=always --name registry registry:2 ;
                     docker build -t secretagent:v1 . ;
