@@ -31,11 +31,12 @@ pipeline {
                 env.SECRET_AGENT_PORT = "3050"
                 echo "SECRET_AGENT_PORT is '${SECRET_AGENT_PORT}'"
             }
+            // If the local registry container does not exists, create it
             sh """ if ! [ \$(docker ps --format '{{.Names}}' | grep -w registry &> /dev/null) ]; then
                      docker run -d --network='host' -p 5000:5000 --restart=always --name registry registry:2;
                    fi;
                 """
-            // if the container is not running, deploy the image to a local registry and then run it
+            // if the secret_agent container is running, delete it in order to create a new one
             sh """ if [ \$(docker ps --format '{{.Names}}' | grep -w secret_agent &> /dev/null) ]; then
                      docker rm -f secret_agent;
                    fi;
